@@ -224,7 +224,7 @@ export const BackgroundSceneManager: React.FC<BackgroundSceneManagerProps> = ({
               Add New Background Restriction Rule
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '10px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: '10px' }}>
               <div>
                 <label className="form-label">Rule Element Name</label>
                 <input
@@ -261,7 +261,7 @@ export const BackgroundSceneManager: React.FC<BackgroundSceneManagerProps> = ({
               />
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: '10px' }}>
               <div>
                 <label className="form-label">Policy Reason</label>
                 <input
@@ -295,7 +295,7 @@ export const BackgroundSceneManager: React.FC<BackgroundSceneManagerProps> = ({
         )}
 
         {/* Rules Cards Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '16px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '16px' }}>
           {bgData.restrictedElements.map(rule => {
             const isMeat = rule.category === 'Meat / Non-Veg';
             const isAnimal = rule.category === 'Animals';
@@ -440,7 +440,7 @@ export const BackgroundSceneManager: React.FC<BackgroundSceneManagerProps> = ({
           <span className="badge badge-success">Approved Standard</span>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '12px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: '12px' }}>
           {bgData.approvedBackdrops.map((backdrop, idx) => (
             <div
               key={idx}

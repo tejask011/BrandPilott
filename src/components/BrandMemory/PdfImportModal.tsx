@@ -484,7 +484,7 @@ export const PdfImportModal: React.FC<PdfImportModalProps> = ({
               {/* Tab Contents */}
               <div style={{ minHeight: '180px', maxHeight: '260px', overflowY: 'auto' }}>
                 {activeReviewTab === 'colors' && (
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))', gap: '10px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 140px), 1fr))', gap: '10px' }}>
                     {extractedData.colors.map((c, i) => (
                       <div
                         key={i}

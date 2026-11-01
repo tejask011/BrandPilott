@@ -265,7 +265,7 @@ export const AddAssetModal: React.FC<AddAssetModalProps> = ({ onClose, onAddAsse
               </select>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: '12px' }}>
               <div className="form-group">
                 <label className="form-label">Asset Title</label>
                 <input
@@ -291,7 +291,7 @@ export const AddAssetModal: React.FC<AddAssetModalProps> = ({ onClose, onAddAsse
               </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: '12px' }}>
               <div className="form-group">
                 <label className="form-label">Marketing Channel</label>
                 <select
@@ -323,7 +323,7 @@ export const AddAssetModal: React.FC<AddAssetModalProps> = ({ onClose, onAddAsse
               </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: '12px' }}>
               <div className="form-group">
                 <label className="form-label">Campaign Validity Date</label>
                 <input
@@ -345,7 +345,7 @@ export const AddAssetModal: React.FC<AddAssetModalProps> = ({ onClose, onAddAsse
               </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: '12px' }}>
               <div className="form-group">
                 <label className="form-label">Displayed Price</label>
                 <input

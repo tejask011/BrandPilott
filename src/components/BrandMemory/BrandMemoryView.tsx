@@ -55,9 +55,9 @@ export const BrandMemoryView: React.FC<BrandMemoryViewProps> = ({
           padding: '24px'
         }}
       >
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px', flexWrap: 'wrap' }}>
               <span className="badge badge-success" style={{ backgroundColor: 'rgba(22, 163, 74, 0.2)', color: '#4ADE80' }}>
                 Module 1: Approved Single Source of Truth
               </span>
@@ -76,7 +76,7 @@ export const BrandMemoryView: React.FC<BrandMemoryViewProps> = ({
           </div>
 
           {/* Quick Metrics from Image 1 */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
             <div
               style={{
                 display: 'flex',
@@ -177,7 +177,7 @@ export const BrandMemoryView: React.FC<BrandMemoryViewProps> = ({
       </div>
 
       {/* Module 1 Sub-Navigation */}
-      <div style={{ display: 'flex', gap: '8px', borderBottom: '2px solid #E2E8F0', paddingBottom: '2px' }}>
+      <div style={{ display: 'flex', gap: '8px', borderBottom: '2px solid #E2E8F0', paddingBottom: '4px', overflowX: 'auto', flexWrap: 'nowrap', WebkitOverflowScrolling: 'touch' }}>
         <button
           className={`btn ${activeTab === 'guidelines' ? 'btn-brand' : 'btn-secondary'}`}
           onClick={() => setActiveTab('guidelines')}

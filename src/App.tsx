@@ -172,6 +172,7 @@ export const App: React.FC = () => {
       </main>
 
       <footer
+        className="app-footer"
         style={{
           marginTop: 'auto',
           borderTop: '1px solid #E2E8F0',
@@ -181,7 +182,9 @@ export const App: React.FC = () => {
           justifyContent: 'space-between',
           alignItems: 'center',
           fontSize: '12px',
-          color: '#64748B'
+          color: '#64748B',
+          flexWrap: 'wrap',
+          gap: '12px'
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

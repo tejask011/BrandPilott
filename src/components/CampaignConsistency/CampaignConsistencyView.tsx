@@ -225,7 +225,7 @@ export const CampaignConsistencyView: React.FC<CampaignConsistencyViewProps> = (
         </div>
 
         {/* 4 Campaign Preset Switcher Buttons */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))', gap: '10px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: '10px' }}>
           {availableCampaigns.map(c => {
             const isSelected = c.id === campaign.id;
             return (
@@ -313,7 +313,7 @@ export const CampaignConsistencyView: React.FC<CampaignConsistencyViewProps> = (
         </div>
 
         {/* Admin Baseline Parameters Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: '14px' }}>
           {/* Approved Colors */}
           <div style={{ padding: '14px', backgroundColor: '#F8FAFC', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', fontWeight: 700, color: '#64748B', textTransform: 'uppercase', marginBottom: '8px' }}>
@@ -477,7 +477,7 @@ export const CampaignConsistencyView: React.FC<CampaignConsistencyViewProps> = (
           </div>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
           <button
             className="btn btn-secondary"
             style={{ padding: '10px 18px', fontSize: '13px', fontWeight: 600, borderRadius: '10px' }}
@@ -633,7 +633,7 @@ export const CampaignConsistencyView: React.FC<CampaignConsistencyViewProps> = (
                 </span>
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
                 <span
                   className={`badge ${activeBatch.faultCount > 0 ? 'badge-violation' : 'badge-success'}`}
                   style={{ fontSize: '11px' }}
@@ -657,7 +657,7 @@ export const CampaignConsistencyView: React.FC<CampaignConsistencyViewProps> = (
             </div>
 
             {/* Selected Batch Asset Cards */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '16px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '16px' }}>
               {activeBatch.assets.map(asset => {
                 const hasFaults = asset.status === 'Conflicts Detected';
                 return (

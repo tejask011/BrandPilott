@@ -20,7 +20,7 @@ export const AssetCardsGrid: React.FC<AssetCardsGridProps> = ({
 }) => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px' }}>
         <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#0F172A' }}>
           Campaign Multi-Channel Asset Roster ({assets.length} Assets)
         </h3>
@@ -29,7 +29,7 @@ export const AssetCardsGrid: React.FC<AssetCardsGridProps> = ({
         </span>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '16px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 280px), 1fr))', gap: '16px' }}>
         {assets.map(asset => {
           const hasConflicts = asset.status === 'Conflicts Detected' || asset.auditStatus === 'Blocked';
           const needsRecheck = asset.status === 'Needs Recheck' || asset.auditStatus === 'Needs Review';

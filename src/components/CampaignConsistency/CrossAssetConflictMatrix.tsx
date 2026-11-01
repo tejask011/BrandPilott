@@ -94,9 +94,10 @@ export const CrossAssetConflictMatrix: React.FC<CrossAssetConflictMatrixProps> =
 
             {/* Comparison Grid Across Involved Assets */}
             <div
+              className="conflict-asset-columns"
               style={{
                 display: 'grid',
-                gridTemplateColumns: `repeat(${conflict.involvedAssets.length}, 1fr)`,
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))',
                 gap: '10px',
                 margin: '12px 0',
                 backgroundColor: '#F8FAFC',

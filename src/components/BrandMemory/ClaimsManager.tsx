@@ -71,7 +71,9 @@ export const ClaimsManager: React.FC<ClaimsManagerProps> = ({ kb, onUpdateKb }) 
           padding: '16px 20px',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-between'
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '12px'
         }}
       >
         <div>
@@ -93,7 +95,7 @@ export const ClaimsManager: React.FC<ClaimsManagerProps> = ({ kb, onUpdateKb }) 
         </button>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(440px, 1fr))', gap: '16px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 300px), 1fr))', gap: '16px' }}>
         {kb.claims.map(claim => (
           <div
             key={claim.id}
@@ -198,7 +200,7 @@ export const ClaimsManager: React.FC<ClaimsManagerProps> = ({ kb, onUpdateKb }) 
                 />
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: '12px' }}>
                 <div className="form-group">
                   <label className="form-label">Claim Category</label>
                   <select
@@ -235,7 +237,7 @@ export const ClaimsManager: React.FC<ClaimsManagerProps> = ({ kb, onUpdateKb }) 
                 />
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: '12px' }}>
                 <div className="form-group">
                   <label className="form-label">Regulatory Tag</label>
                   <input

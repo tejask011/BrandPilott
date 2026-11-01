@@ -286,7 +286,7 @@ export const TerminologyManager: React.FC<TerminologyManagerProps> = ({ kb, onUp
                 />
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: '12px' }}>
                 <div className="form-group">
                   <label className="form-label">Rule Type</label>
                   <select

@@ -93,7 +93,10 @@ export const BrandPaletteScanner: React.FC<BrandPaletteScannerProps> = ({
         boxShadow: '0 1px 4px rgba(0, 0, 0, 0.03)',
         display: 'flex',
         flexDirection: 'column',
-        gap: '8px'
+        gap: '8px',
+        maxWidth: '100%',
+        boxSizing: 'border-box',
+        overflow: 'hidden'
       }}
     >
       {/* Top Header Bar */}
@@ -103,11 +106,13 @@ export const BrandPaletteScanner: React.FC<BrandPaletteScannerProps> = ({
           alignItems: 'center',
           justifyContent: 'space-between',
           cursor: 'pointer',
-          userSelect: 'none'
+          userSelect: 'none',
+          flexWrap: 'wrap',
+          gap: '8px'
         }}
         onClick={() => setIsExpanded(!isExpanded)}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', minWidth: 0 }}>
           <div
             style={{
               width: '26px',
@@ -118,13 +123,14 @@ export const BrandPaletteScanner: React.FC<BrandPaletteScannerProps> = ({
               color: '#7C3AED',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              flexShrink: 0
             }}
           >
             <Palette size={14} />
           </div>
           <div>
-            <div style={{ fontSize: '12px', fontWeight: 700, color: '#0F172A', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div style={{ fontSize: '12px', fontWeight: 700, color: '#0F172A', display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
               <span>Visual Palette Scanner</span>
               {getStatusBadge()}
             </div>
@@ -132,8 +138,8 @@ export const BrandPaletteScanner: React.FC<BrandPaletteScannerProps> = ({
         </div>
 
         {/* Dominant Swatches Strip */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', flexWrap: 'wrap' }}>
             {paletteResult.dominantSwatches.map((s, idx) => (
               <div
                 key={idx}
@@ -145,7 +151,8 @@ export const BrandPaletteScanner: React.FC<BrandPaletteScannerProps> = ({
                   backgroundColor: s.hex,
                   border: s.isCompliant ? '1.5px solid rgba(0,0,0,0.15)' : '2px solid #DC2626',
                   boxShadow: '0 1px 2px rgba(0,0,0,0.12)',
-                  position: 'relative'
+                  position: 'relative',
+                  flexShrink: 0
                 }}
               />
             ))}
@@ -183,7 +190,7 @@ export const BrandPaletteScanner: React.FC<BrandPaletteScannerProps> = ({
             {paletteResult.summaryText}
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))', gap: '6px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 115px), 1fr))', gap: '6px' }}>
             {paletteResult.dominantSwatches.map((swatch, i) => (
               <div
                 key={i}

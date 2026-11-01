@@ -283,7 +283,7 @@ export const GuidelinesVisualizer: React.FC<GuidelinesVisualizerProps> = ({ kb, 
           )}
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '24px' }}>
           {/* Left Column: Slogans & Previous Slogan Context */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {/* Primary Slogan */}
@@ -348,7 +348,7 @@ export const GuidelinesVisualizer: React.FC<GuidelinesVisualizerProps> = ({ kb, 
                     value={pastSloganText}
                     onChange={e => setPastSloganText(e.target.value)}
                   />
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '8px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 140px), 1fr))', gap: '8px' }}>
                     <input
                       type="date"
                       className="form-input"
@@ -551,7 +551,7 @@ export const GuidelinesVisualizer: React.FC<GuidelinesVisualizerProps> = ({ kb, 
               marginBottom: '18px'
             }}
           >
-            <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr 1.5fr auto', gap: '10px', alignItems: 'flex-end' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 160px), 1fr))', gap: '10px', alignItems: 'flex-end' }}>
               <div>
                 <label className="form-label">Color Name</label>
                 <input
@@ -857,7 +857,7 @@ export const GuidelinesVisualizer: React.FC<GuidelinesVisualizerProps> = ({ kb, 
           </button>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '20px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '20px' }}>
           {kb.logos.map(logo => {
             const isApproved = logo.status === 'Approved Current';
             const isCustomUpload = logo.imageUrl.startsWith('data:image');
@@ -1018,7 +1018,7 @@ export const GuidelinesVisualizer: React.FC<GuidelinesVisualizerProps> = ({ kb, 
                   />
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: '12px' }}>
                   <div>
                     <label className="form-label">Version Tag</label>
                     <input

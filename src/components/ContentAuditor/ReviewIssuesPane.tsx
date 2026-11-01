@@ -401,9 +401,10 @@ export const ReviewIssuesPane: React.FC<ReviewIssuesPaneProps> = ({
 
                 {/* VISUAL BEFORE VS AFTER DIFF (User requested: "can see the fix and where the error is") */}
                 <div
+                  className="diff-grid-container"
                   style={{
                     display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))',
                     gap: '10px',
                     margin: '12px 0',
                     backgroundColor: '#F8FAFC',
@@ -488,7 +489,8 @@ export const ReviewIssuesPane: React.FC<ReviewIssuesPaneProps> = ({
                       justifyContent: 'flex-end',
                       gap: '8px',
                       paddingTop: '10px',
-                      borderTop: '1px solid #E2E8F0'
+                      borderTop: '1px solid #E2E8F0',
+                      flexWrap: 'wrap'
                     }}
                     onClick={e => e.stopPropagation()}
                   >

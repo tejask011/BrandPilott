@@ -168,7 +168,7 @@ export const SideBySideComparator: React.FC<SideBySideComparatorProps> = ({
       </div>
 
       {/* Synchronized Side-by-Side Comparison Table */}
-      <div style={{ overflowX: 'auto', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
+      <div style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', borderRadius: '12px', border: '1px solid #E2E8F0' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '700px' }}>
           <thead>
             <tr style={{ backgroundColor: '#F1F5F9', borderBottom: '2px solid #CBD5E1' }}>

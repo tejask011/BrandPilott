@@ -197,7 +197,7 @@ export const ProductFactsManager: React.FC<ProductFactsManagerProps> = ({
       </div>
 
       {/* Main Grid: Products List & Price History Details */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: '20px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: '20px' }}>
         {/* Products List */}
         <div className="curved-section-box">
           <div className="curved-section-header">
@@ -415,7 +415,7 @@ export const ProductFactsManager: React.FC<ProductFactsManagerProps> = ({
                 />
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: '12px' }}>
                 <div className="form-group">
                   <label className="form-label">Valid From Date</label>
                   <input
@@ -488,7 +488,7 @@ export const ProductFactsManager: React.FC<ProductFactsManagerProps> = ({
                 />
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: '12px' }}>
                 <div className="form-group">
                   <label className="form-label">SKU Identifier</label>
                   <input
@@ -509,7 +509,7 @@ export const ProductFactsManager: React.FC<ProductFactsManagerProps> = ({
                 </div>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: '12px' }}>
                 <div className="form-group">
                   <label className="form-label">Category</label>
                   <input

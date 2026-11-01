@@ -354,7 +354,7 @@ function CalculationModal({ isOpen, onClose }: CalculationModalProps) {
               2. Severity-Based Normalized Deductions
             </div>
             <div style={{ backgroundColor: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: '10px', padding: '12px' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginBottom: '8px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 90px), 1fr))', gap: '8px', marginBottom: '8px' }}>
                 <div style={{ backgroundColor: '#FEF2F2', border: '1px solid #FECACA', borderRadius: '8px', padding: '8px', textAlign: 'center' }}>
                   <div style={{ fontWeight: 800, color: '#DC2626', fontSize: '11.5px' }}>CRITICAL / HIGH</div>
                   <div style={{ fontSize: '13px', fontWeight: 900, color: '#991B1B', marginTop: '2px' }}>
@@ -409,7 +409,7 @@ function CalculationModal({ isOpen, onClose }: CalculationModalProps) {
             <div style={{ fontWeight: 800, color: '#0F172A', marginBottom: '6px' }}>
               4. Launch Thresholds
             </div>
-            <div style={{ display: 'flex', gap: '8px', fontSize: '11.5px' }}>
+            <div style={{ display: 'flex', gap: '8px', fontSize: '11.5px', flexWrap: 'wrap' }}>
               <div style={{ flex: 1, padding: '6px 10px', borderRadius: '6px', backgroundColor: '#F0FDF4', border: '1px solid #BBF7D0', color: '#166534' }}>
                 <strong>&ge; {THRESHOLD_READY} pts:</strong> READY (if 0 critical issues)
               </div>

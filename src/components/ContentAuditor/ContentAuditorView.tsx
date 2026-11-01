@@ -15,7 +15,7 @@ import { cleanOcrTextWithGroq } from '../../services/groqService';
 import { saveAuditLedgerRecord } from '../../services/storageService';
 import { BrandPaletteScanner } from './BrandPaletteScanner';
 import { PaletteAnalysisResult, analyzeImagePaletteFromUrl } from '../../services/colorAnalysisService';
-import { MailCheck, CheckCircle2, AlertTriangle, RotateCcw } from 'lucide-react';
+import { MailCheck, CheckCircle2, AlertTriangle, RotateCcw, Eye, Upload, AlertCircle, Layers } from 'lucide-react';
 
 interface ContentAuditorViewProps {
   kb: BrandKnowledgeBase;
@@ -177,6 +177,8 @@ export const ContentAuditorView: React.FC<ContentAuditorViewProps> = ({
   const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
   const [isGroqReportModalOpen, setIsGroqReportModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  // Mobile / Tablet pane switcher ('upload' | 'preview' | 'issues' | 'all')
+  const [mobilePane, setMobilePane] = useState<'upload' | 'preview' | 'issues' | 'all'>('preview');
 
   // Feature 2: In-Browser Brand Palette & Visual Identity Scanner
   const [paletteAnalysis, setPaletteAnalysis] = useState<PaletteAnalysisResult | null>(null);
@@ -901,18 +903,61 @@ export const ContentAuditorView: React.FC<ContentAuditorViewProps> = ({
         </div>
       )}
 
+      {/* Mobile/Tablet Workstation Pane Switcher */}
+      <div className="auditor-mobile-pane-tabs">
+        <button
+          type="button"
+          className={`pane-tab ${mobilePane === 'upload' ? 'active' : ''}`}
+          onClick={() => setMobilePane('upload')}
+        >
+          <Upload size={13} />
+          <span>1. Asset & Copy</span>
+        </button>
+
+        <button
+          type="button"
+          className={`pane-tab ${mobilePane === 'preview' ? 'active' : ''}`}
+          onClick={() => setMobilePane('preview')}
+        >
+          <Eye size={13} />
+          <span>2. Visual Preview</span>
+          {auditReport && auditReport.findings.length > 0 && (
+            <span className="pane-badge">{auditReport.findings.length}</span>
+          )}
+        </button>
+
+        <button
+          type="button"
+          className={`pane-tab ${mobilePane === 'issues' ? 'active' : ''}`}
+          onClick={() => setMobilePane('issues')}
+        >
+          <AlertCircle size={13} />
+          <span>3. Issues & Fixes</span>
+          {auditReport && auditReport.findings.length > 0 && (
+            <span className="pane-badge pane-badge-warn">{auditReport.findings.length}</span>
+          )}
+        </button>
+
+        <button
+          type="button"
+          className={`pane-tab ${mobilePane === 'all' ? 'active' : ''}`}
+          onClick={() => setMobilePane('all')}
+        >
+          <Layers size={13} />
+          <span>All Stacked</span>
+        </button>
+      </div>
+
       {/* 3-Pane Workspace Container matching Image 2 & PDF Page 7 */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '340px 1fr 490px',
-          gap: '20px',
-          alignItems: 'stretch',
-          minHeight: '760px'
-        }}
-      >
+      <div className="auditor-workspace-grid">
         {/* Pane 1: Batches & Material Selection */}
-        <div className="curved-section-box" style={{ display: 'flex', flexDirection: 'column' }}>
+        <div
+          className="curved-section-box auditor-pane-1"
+          style={{
+            display: mobilePane === 'upload' || mobilePane === 'all' ? 'flex' : 'none',
+            flexDirection: 'column'
+          }}
+        >
           <UploadPane
             selectedAsset={selectedAsset}
             onSelectAsset={handleSelectAsset}
@@ -930,7 +975,13 @@ export const ContentAuditorView: React.FC<ContentAuditorViewProps> = ({
         </div>
 
         {/* Pane 2: Preview Material with Interactive Numbered Markers */}
-        <div className="curved-section-box" style={{ display: 'flex', flexDirection: 'column' }}>
+        <div
+          className="curved-section-box auditor-pane-2"
+          style={{
+            display: mobilePane === 'preview' || mobilePane === 'all' ? 'flex' : 'none',
+            flexDirection: 'column'
+          }}
+        >
           <AssetPreviewPane
             assetTitle={selectedAsset.name}
             assetType={selectedAsset.type}
@@ -960,7 +1011,13 @@ export const ContentAuditorView: React.FC<ContentAuditorViewProps> = ({
         </div>
 
         {/* Pane 3: Review Issues & Evidence Table */}
-        <div className="curved-section-box" style={{ display: 'flex', flexDirection: 'column' }}>
+        <div
+          className="curved-section-box auditor-pane-3"
+          style={{
+            display: mobilePane === 'issues' || mobilePane === 'all' ? 'flex' : 'none',
+            flexDirection: 'column'
+          }}
+        >
           <ReviewIssuesPane
             findings={auditReport?.findings || []}
             selectedFindingId={selectedFindingId}

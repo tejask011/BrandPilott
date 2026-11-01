@@ -328,7 +328,7 @@ export const AssetPreviewPane: React.FC<AssetPreviewPaneProps> = ({
 
   // ── Shared elements ────────────────────────────────────────────────────────
   const headerControls = (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #E2E8F0', paddingBottom: '12px' }}>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #E2E8F0', paddingBottom: '12px', flexWrap: 'wrap', gap: '10px' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         <div style={{ width: '26px', height: '26px', borderRadius: '50%', backgroundColor: '#2563EB', color: '#FFF', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '12px' }}>2</div>
         <div>
@@ -336,7 +336,7 @@ export const AssetPreviewPane: React.FC<AssetPreviewPaneProps> = ({
           <div style={{ fontSize: '11px', color: '#64748B', whiteSpace: 'nowrap' }}>{showCorrectedVersion ? 'Showing Regenerated On-Brand Version' : 'Showing Draft with Highlighted Error Markers'}</div>
         </div>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
 
         <button className={`btn btn-sm ${!showCorrectedVersion ? 'btn-brand' : 'btn-secondary'}`} style={{ fontSize: '11.5px', padding: '5px 12px', display: 'flex', alignItems: 'center', gap: '5px' }} onClick={() => setShowCorrectedVersion(false)}>
           <Eye size={13} /><span>Old (Draft)</span>
@@ -479,6 +479,7 @@ export const AssetPreviewPane: React.FC<AssetPreviewPaneProps> = ({
               style={{
                 width: '100%',
                 maxWidth: '430px',
+                boxSizing: 'border-box',
                 marginBottom: '14px',
                 backgroundColor: '#FFFDF5',
                 border: '1.5px solid #F59E0B',
@@ -519,7 +520,7 @@ export const AssetPreviewPane: React.FC<AssetPreviewPaneProps> = ({
 
           {/* ──────────────── INSTAGRAM ──────────────── */}
           {resolvedFormat === 'instagram' && !showCorrectedVersion && (
-            <div style={{ width: '100%', maxWidth: '430px', backgroundColor: '#FFFFFF', borderRadius: '12px', overflow: 'hidden', border: '1px solid #DBDBDB', boxShadow: '0 4px 24px rgba(0,0,0,0.12)', fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}>
+            <div style={{ width: '100%', maxWidth: '430px', boxSizing: 'border-box', backgroundColor: '#FFFFFF', borderRadius: '12px', overflow: 'hidden', border: '1px solid #DBDBDB', boxShadow: '0 4px 24px rgba(0,0,0,0.12)', fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif' }}>
               {/* Account header */}
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -669,7 +670,7 @@ export const AssetPreviewPane: React.FC<AssetPreviewPaneProps> = ({
 
           {/* ──────────────── PAMPHLET ──────────────── */}
           {resolvedFormat === 'pamphlet' && !showCorrectedVersion && (
-            <div style={{ width: '420px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
+            <div style={{ width: '100%', maxWidth: '420px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', backgroundColor: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: '8px', padding: '8px 14px', width: '100%', justifyContent: 'space-between' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                   <FileText size={14} color="#64748B" />
@@ -695,7 +696,7 @@ export const AssetPreviewPane: React.FC<AssetPreviewPaneProps> = ({
               )}
             </div>
           )}
-          {resolvedFormat === 'pamphlet' && showCorrectedVersion && <div style={{ width: '420px' }}>{fixedTextCard}</div>}
+          {resolvedFormat === 'pamphlet' && showCorrectedVersion && <div style={{ width: '100%', maxWidth: '420px', boxSizing: 'border-box' }}>{fixedTextCard}</div>}
 
           {/* ──────────────── BANNER ──────────────── */}
           {resolvedFormat === 'banner' && !showCorrectedVersion && (
@@ -733,7 +734,7 @@ export const AssetPreviewPane: React.FC<AssetPreviewPaneProps> = ({
 
           {/* ──────────────── NEUTRAL IMAGE ──────────────── */}
           {resolvedFormat === 'image' && !showCorrectedVersion && resolvedImageUrl && (
-            <div style={{ width: '420px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            <div style={{ width: '100%', maxWidth: '420px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {findings.length > 0 && (
                 <div style={{ backgroundColor: '#FEF2F2', border: '1.5px solid #FECACA', color: '#991B1B', padding: '6px 14px', borderRadius: '20px', fontSize: '11.5px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}>
                   <AlertCircle size={14} color="#DC2626" /><span>Interactive Ad Preview · Rectangular Regions Highlight Exact Violations</span>
@@ -743,7 +744,7 @@ export const AssetPreviewPane: React.FC<AssetPreviewPaneProps> = ({
             </div>
           )}
           {resolvedFormat === 'image' && !showCorrectedVersion && !resolvedImageUrl && (
-            <div style={{ width: '420px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <div style={{ width: '100%', maxWidth: '420px', boxSizing: 'border-box', display: 'flex', flexDirection: 'column', gap: '14px' }}>
               <div
                 style={{
                   width: '100%',
@@ -828,11 +829,11 @@ export const AssetPreviewPane: React.FC<AssetPreviewPaneProps> = ({
               </div>
             </div>
           )}
-          {resolvedFormat === 'image' && showCorrectedVersion && <div style={{ width: '420px' }}>{fixedTextCard}</div>}
+          {resolvedFormat === 'image' && showCorrectedVersion && <div style={{ width: '100%', maxWidth: '420px', boxSizing: 'border-box' }}>{fixedTextCard}</div>}
 
           {/* ──────────────── TEXT (no image asset / Pasted Custom Copy) ──────────────── */}
           {resolvedFormat === 'text' && (
-            <div style={{ width: '460px', minHeight: '480px', backgroundColor: '#FFFFFF', borderRadius: '16px', border: '1px solid #CBD5E1', boxShadow: '0 8px 24px rgba(0,0,0,0.08)', padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ width: '100%', maxWidth: '460px', boxSizing: 'border-box', minHeight: '480px', backgroundColor: '#FFFFFF', borderRadius: '16px', border: '1px solid #CBD5E1', boxShadow: '0 8px 24px rgba(0,0,0,0.08)', padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <div style={{ borderBottom: '1.5px solid #E2E8F0', paddingBottom: '12px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <FileText size={18} color="#2563EB" />
