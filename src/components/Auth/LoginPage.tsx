@@ -7,7 +7,8 @@ import {
   EyeOff,
   ArrowRight,
   AlertCircle,
-  Cpu
+  Cpu,
+  KeyRound
 } from 'lucide-react';
 
 interface LoginPageProps {
@@ -146,6 +147,70 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
           <p style={{ margin: 0, fontSize: '13px', color: '#64748B', lineHeight: '1.4' }}>
             Evidence-Driven Brand Governance Workstation
           </p>
+        </div>
+
+        {/* Demo Credentials Box */}
+        <div
+          style={{
+            backgroundColor: '#F8FAFC',
+            border: '1.5px dashed #CBD5E1',
+            borderRadius: '10px',
+            padding: '12px 14px',
+            marginBottom: '20px',
+            boxSizing: 'border-box'
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <KeyRound size={14} color="#00473E" />
+              <span style={{ fontSize: '11.5px', fontWeight: 700, color: '#334155', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                Demo Credentials
+              </span>
+            </div>
+            <button
+              type="button"
+              onClick={() => {
+                setUsername('admin');
+                setPassword('admin');
+                setError(null);
+              }}
+              style={{
+                fontSize: '11px',
+                fontWeight: 600,
+                color: '#00473E',
+                backgroundColor: '#E2E8F0',
+                border: 'none',
+                borderRadius: '4px',
+                padding: '2px 8px',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '4px'
+              }}
+              title="Click to auto-fill username & password"
+            >
+              <span>Auto-fill</span>
+            </button>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: '8px',
+              fontSize: '12px',
+              color: '#1E293B'
+            }}
+          >
+            <div style={{ backgroundColor: '#FFFFFF', padding: '6px 10px', borderRadius: '6px', border: '1px solid #E2E8F0' }}>
+              <span style={{ color: '#64748B', fontSize: '11px', display: 'block' }}>Username:</span>
+              <strong style={{ fontFamily: 'monospace', fontSize: '13px', color: '#0F172A' }}>admin</strong>
+            </div>
+            <div style={{ backgroundColor: '#FFFFFF', padding: '6px 10px', borderRadius: '6px', border: '1px solid #E2E8F0' }}>
+              <span style={{ color: '#64748B', fontSize: '11px', display: 'block' }}>Password:</span>
+              <strong style={{ fontFamily: 'monospace', fontSize: '13px', color: '#0F172A' }}>admin</strong>
+            </div>
+          </div>
         </div>
 
         {/* Error Alert */}

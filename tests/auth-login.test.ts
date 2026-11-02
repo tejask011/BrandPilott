@@ -31,5 +31,6 @@ describe('Demo Authentication & Login Workstation', () => {
     assert.ok(html.includes('placeholder="admin"'), 'Input fields should have placeholder="admin"');
     assert.ok(html.includes('id="username-input"'), 'Should render username input');
     assert.ok(html.includes('id="password-input"'), 'Should render password input');
+    assert.ok(html.includes('Demo Credentials'), 'Should display demo credentials textbox');
   });
 });
