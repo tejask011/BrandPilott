@@ -6,9 +6,7 @@ import {
   Eye,
   EyeOff,
   ArrowRight,
-  Sparkles,
   AlertCircle,
-  CheckCircle2,
   Cpu
 } from 'lucide-react';
 
@@ -17,8 +15,8 @@ interface LoginPageProps {
 }
 
 export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
-  const [username, setUsername] = useState('admin');
-  const [password, setPassword] = useState('admin');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -31,35 +29,18 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
     const trimmedUser = username.trim().toLowerCase();
     const trimmedPass = password.trim();
 
-    // Accept 'admin' / 'admin' for demo, or any non-empty input if testing
+    // Accept 'admin' / 'admin' for demo
     if (trimmedUser === 'admin' && trimmedPass === 'admin') {
       setTimeout(() => {
         onLogin('admin');
         setIsSubmitting(false);
-      }, 250);
+      }, 200);
     } else {
       setTimeout(() => {
         setError('Invalid credentials. Use demo username: "admin" and password: "admin"');
         setIsSubmitting(false);
       }, 200);
     }
-  };
-
-  const handleQuickDemoLogin = () => {
-    setUsername('admin');
-    setPassword('admin');
-    setError(null);
-    setIsSubmitting(true);
-    setTimeout(() => {
-      onLogin('admin');
-      setIsSubmitting(false);
-    }, 200);
-  };
-
-  const handleFillDemoCredentials = () => {
-    setUsername('admin');
-    setPassword('admin');
-    setError(null);
   };
 
   return (
@@ -113,7 +94,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
           position: 'relative',
           zIndex: 1,
           width: '100%',
-          maxWidth: '430px',
+          maxWidth: '420px',
           backgroundColor: '#FFFFFF',
           borderRadius: '16px',
           boxShadow: '0 12px 36px -6px rgba(0, 0, 0, 0.08), 0 4px 16px -2px rgba(0, 0, 0, 0.04)',
@@ -165,56 +146,6 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
           <p style={{ margin: 0, fontSize: '13px', color: '#64748B', lineHeight: '1.4' }}>
             Evidence-Driven Brand Governance Workstation
           </p>
-        </div>
-
-        {/* Demo Credentials Pill */}
-        <div
-          onClick={handleFillDemoCredentials}
-          style={{
-            cursor: 'pointer',
-            backgroundColor: '#F8FAFC',
-            border: '1px solid #E2E8F0',
-            borderRadius: '10px',
-            padding: '10px 14px',
-            marginBottom: '22px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: '8px',
-            transition: 'all 0.15s ease'
-          }}
-          title="Click to auto-fill demo credentials"
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <div
-              style={{
-                width: '20px',
-                height: '20px',
-                borderRadius: '50%',
-                backgroundColor: '#ECFDF5',
-                color: '#16A34A',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0
-              }}
-            >
-              <CheckCircle2 size={13} />
-            </div>
-            <div style={{ fontSize: '12px', color: '#334155' }}>
-              Demo Login: <strong>admin</strong> / <strong>admin</strong>
-            </div>
-          </div>
-          <span
-            style={{
-              fontSize: '11px',
-              color: '#00473E',
-              fontWeight: 600,
-              textDecoration: 'underline'
-            }}
-          >
-            Auto-fill
-          </span>
         </div>
 
         {/* Error Alert */}
@@ -299,21 +230,18 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
           </div>
 
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-              <label
-                htmlFor="password-input"
-                style={{
-                  fontSize: '12.5px',
-                  fontWeight: 600,
-                  color: '#334155'
-                }}
-              >
-                Password
-              </label>
-              <span style={{ fontSize: '11px', color: '#64748B' }}>
-                Default: <strong>admin</strong>
-              </span>
-            </div>
+            <label
+              htmlFor="password-input"
+              style={{
+                display: 'block',
+                fontSize: '12.5px',
+                fontWeight: 600,
+                color: '#334155',
+                marginBottom: '6px'
+              }}
+            >
+              Password
+            </label>
             <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
               <div
                 style={{
@@ -383,7 +311,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
             type="submit"
             disabled={isSubmitting}
             style={{
-              marginTop: '6px',
+              marginTop: '8px',
               width: '100%',
               padding: '11px 18px',
               backgroundColor: '#00473E',
@@ -413,58 +341,10 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
           </button>
         </form>
 
-        {/* Divider */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            margin: '20px 0 16px',
-            color: '#CBD5E1'
-          }}
-        >
-          <div style={{ flex: 1, height: '1px', backgroundColor: '#E2E8F0' }} />
-          <span style={{ padding: '0 10px', fontSize: '11px', color: '#94A3B8', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-            or
-          </span>
-          <div style={{ flex: 1, height: '1px', backgroundColor: '#E2E8F0' }} />
-        </div>
-
-        {/* 1-Click Quick Demo Access Button */}
-        <button
-          type="button"
-          onClick={handleQuickDemoLogin}
-          disabled={isSubmitting}
-          style={{
-            width: '100%',
-            padding: '10px 16px',
-            backgroundColor: '#F0FDF4',
-            color: '#166534',
-            border: '1px solid #BBF7D0',
-            borderRadius: '8px',
-            fontSize: '13px',
-            fontWeight: 700,
-            cursor: isSubmitting ? 'not-allowed' : 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '8px',
-            transition: 'all 0.15s ease'
-          }}
-          onMouseEnter={(e) => {
-            if (!isSubmitting) e.currentTarget.style.backgroundColor = '#DCFCE7';
-          }}
-          onMouseLeave={(e) => {
-            if (!isSubmitting) e.currentTarget.style.backgroundColor = '#F0FDF4';
-          }}
-        >
-          <Sparkles size={15} color="#16A34A" />
-          <span>1-Click Quick Demo Login (Admin)</span>
-        </button>
-
         {/* Compliance Footer note */}
         <div
           style={{
-            marginTop: '24px',
+            marginTop: '28px',
             paddingTop: '16px',
             borderTop: '1px solid #F1F5F9',
             display: 'flex',
