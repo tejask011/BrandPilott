@@ -19,14 +19,49 @@ import { AuditLedgerRecord, AuditReport } from './types/audit';
 import { BatchAsset } from './components/ContentAuditor/UploadPane';
 import { isValidImageUrl, getAssetImage } from './services/imageStorage';
 import { ShieldCheck, Cpu } from 'lucide-react';
+import { LoginPage } from './components/Auth/LoginPage';
 
 export const App: React.FC = () => {
+  const [authSession, setAuthSession] = useState<{ isAuthenticated: boolean; user: string }>(() => {
+    try {
+      const stored = localStorage.getItem('brandpilot_demo_auth');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (parsed?.isAuthenticated) {
+          return { isAuthenticated: true, user: parsed.user || 'admin' };
+        }
+      }
+    } catch {
+      // ignore
+    }
+    return { isAuthenticated: false, user: '' };
+  });
+
   const [activeTab, setActiveTab] = useState<ActiveModuleTab>('content-auditor');
   const [brandKB, setBrandKB] = useState<BrandKnowledgeBase>(loadBrandKnowledgeBase);
   const [allCampaigns, setAllCampaigns] = useState<Campaign[]>(loadAllCampaigns);
   const [campaign, setCampaign] = useState<Campaign>(() => loadCampaign());
   const [ledger, setLedger] = useState<AuditLedgerRecord[]>(loadAuditLedger);
   const [incomingAuditorAsset, setIncomingAuditorAsset] = useState<BatchAsset | null>(null);
+
+  const handleLogin = (username: string) => {
+    const session = { isAuthenticated: true, user: username };
+    setAuthSession(session);
+    try {
+      localStorage.setItem('brandpilot_demo_auth', JSON.stringify(session));
+    } catch {
+      // ignore
+    }
+  };
+
+  const handleLogout = () => {
+    setAuthSession({ isAuthenticated: false, user: '' });
+    try {
+      localStorage.removeItem('brandpilot_demo_auth');
+    } catch {
+      // ignore
+    }
+  };
 
   // Sync to storage
   const handleUpdateKb = (updated: BrandKnowledgeBase) => {
@@ -127,6 +162,10 @@ export const App: React.FC = () => {
     setActiveTab(tab);
   };
 
+  if (!authSession.isAuthenticated) {
+    return <LoginPage onLogin={handleLogin} />;
+  }
+
   return (
     <div className="app-container">
       <Navbar
@@ -134,6 +173,8 @@ export const App: React.FC = () => {
         onTabChange={handleTabChange}
         brandKB={brandKB}
         onResetDefaults={handleResetDefaults}
+        currentUser={authSession.user}
+        onLogout={handleLogout}
       />
 
       <main className="main-view-container">

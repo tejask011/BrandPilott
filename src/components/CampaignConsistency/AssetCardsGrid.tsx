@@ -43,9 +43,8 @@ export const AssetCardsGrid: React.FC<AssetCardsGridProps> = ({
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                borderTop: `4px solid ${
-                  hasConflicts ? '#DC2626' : needsRecheck ? '#F59E0B' : '#16A34A'
-                }`
+                borderTop: `4px solid ${hasConflicts ? '#DC2626' : needsRecheck ? '#F59E0B' : '#16A34A'
+                  }`
               }}
             >
               <div>
@@ -86,13 +85,12 @@ export const AssetCardsGrid: React.FC<AssetCardsGridProps> = ({
                   </div>
 
                   <span
-                    className={`badge ${
-                      hasConflicts
+                    className={`badge ${hasConflicts
                         ? 'badge-violation'
                         : needsRecheck
-                        ? 'badge-unverified'
-                        : 'badge-success'
-                    }`}
+                          ? 'badge-unverified'
+                          : 'badge-success'
+                      }`}
                   >
                     {hasConflicts ? (
                       <>
@@ -156,13 +154,12 @@ export const AssetCardsGrid: React.FC<AssetCardsGridProps> = ({
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <span style={{ color: '#64748B' }}>Audit Status:</span>
                       <span
-                        className={`badge ${
-                          asset.auditStatus === 'Blocked'
+                        className={`badge ${asset.auditStatus === 'Blocked'
                             ? 'badge-violation'
                             : asset.auditStatus === 'Needs Review'
-                            ? 'badge-unverified'
-                            : 'badge-success'
-                        }`}
+                              ? 'badge-unverified'
+                              : 'badge-success'
+                          }`}
                         style={{ fontSize: '10px' }}
                       >
                         {asset.auditStatus}

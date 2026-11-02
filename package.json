@@ -8,7 +8,7 @@
     "dev:all": "concurrently -k -p \"[{name}]\" -n \"SERVER,CLIENT\" -c \"cyan.bold,magenta.bold\" \"npm run server\" \"npm run dev\"",
     "start": "tsx server/index.ts",
     "server": "tsx server/index.ts",
-    "test": "tsx --test tests/critical-fixes.test.ts tests/readiness.test.ts tests/pdf-brand-guide.test.ts tests/color-palette-scanner.test.ts",
+    "test": "tsx --test tests/critical-fixes.test.ts tests/readiness.test.ts tests/pdf-brand-guide.test.ts tests/color-palette-scanner.test.ts tests/auth-login.test.ts",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview"

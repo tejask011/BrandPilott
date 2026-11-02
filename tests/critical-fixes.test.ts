@@ -211,6 +211,7 @@ describe('Task 1 — Backend Proxy Request Validation & Health', () => {
   test('GET /api/health returns server status without exposing secrets', async () => {
     const { server } = await import('../server/index');
     serverInstance = server;
+    await new Promise(r => setTimeout(r, 300));
     const res = await fetch('http://localhost:3001/api/health', { headers: { Connection: 'close' } });
     assert.equal(res.status, 200);
     const data = await res.json() as { status: string; groqConfigured: boolean };

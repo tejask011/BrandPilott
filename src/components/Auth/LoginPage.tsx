@@ -1,0 +1,484 @@
+import React, { useState } from 'react';
+import {
+  ShieldCheck,
+  Lock,
+  User,
+  Eye,
+  EyeOff,
+  ArrowRight,
+  Sparkles,
+  AlertCircle,
+  CheckCircle2,
+  Cpu
+} from 'lucide-react';
+
+interface LoginPageProps {
+  onLogin: (username: string) => void;
+}
+
+export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
+  const [username, setUsername] = useState('admin');
+  const [password, setPassword] = useState('admin');
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setIsSubmitting(true);
+
+    const trimmedUser = username.trim().toLowerCase();
+    const trimmedPass = password.trim();
+
+    // Accept 'admin' / 'admin' for demo, or any non-empty input if testing
+    if (trimmedUser === 'admin' && trimmedPass === 'admin') {
+      setTimeout(() => {
+        onLogin('admin');
+        setIsSubmitting(false);
+      }, 250);
+    } else {
+      setTimeout(() => {
+        setError('Invalid credentials. Use demo username: "admin" and password: "admin"');
+        setIsSubmitting(false);
+      }, 200);
+    }
+  };
+
+  const handleQuickDemoLogin = () => {
+    setUsername('admin');
+    setPassword('admin');
+    setError(null);
+    setIsSubmitting(true);
+    setTimeout(() => {
+      onLogin('admin');
+      setIsSubmitting(false);
+    }, 200);
+  };
+
+  const handleFillDemoCredentials = () => {
+    setUsername('admin');
+    setPassword('admin');
+    setError(null);
+  };
+
+  return (
+    <div
+      style={{
+        minHeight: '100vh',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#F8FAFC',
+        padding: '20px',
+        boxSizing: 'border-box',
+        position: 'relative',
+        overflow: 'hidden'
+      }}
+    >
+      {/* Subtle ambient decorative gradient orbs */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '-120px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '560px',
+          height: '360px',
+          background: 'radial-gradient(circle, rgba(0,71,62,0.12) 0%, rgba(200,155,60,0.06) 50%, transparent 75%)',
+          borderRadius: '50%',
+          pointerEvents: 'none',
+          zIndex: 0
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '-150px',
+          right: '5%',
+          width: '400px',
+          height: '400px',
+          background: 'radial-gradient(circle, rgba(22,163,74,0.08) 0%, transparent 70%)',
+          borderRadius: '50%',
+          pointerEvents: 'none',
+          zIndex: 0
+        }}
+      />
+
+      {/* Main Login Card */}
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 1,
+          width: '100%',
+          maxWidth: '430px',
+          backgroundColor: '#FFFFFF',
+          borderRadius: '16px',
+          boxShadow: '0 12px 36px -6px rgba(0, 0, 0, 0.08), 0 4px 16px -2px rgba(0, 0, 0, 0.04)',
+          border: '1px solid #E2E8F0',
+          padding: '36px 32px',
+          boxSizing: 'border-box'
+        }}
+      >
+        {/* Brand Header */}
+        <div style={{ textAlign: 'center', marginBottom: '28px' }}>
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '54px',
+              height: '54px',
+              borderRadius: '14px',
+              background: 'linear-gradient(135deg, #00473E 0%, #065F46 100%)',
+              color: '#FFFFFF',
+              boxShadow: '0 8px 18px rgba(0,71,62,0.28)',
+              marginBottom: '14px'
+            }}
+          >
+            <ShieldCheck size={30} strokeWidth={2.2} />
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '4px' }}>
+            <span style={{ fontSize: '22px', fontWeight: 800, color: '#0F172A', letterSpacing: '-0.4px' }}>
+              BrandPilot
+            </span>
+            <span
+              style={{
+                fontSize: '11px',
+                fontWeight: 700,
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                padding: '2px 8px',
+                borderRadius: '6px',
+                backgroundColor: '#EFF6FF',
+                color: '#2563EB',
+                border: '1px solid #BFDBFE'
+              }}
+            >
+              Intelligence
+            </span>
+          </div>
+
+          <p style={{ margin: 0, fontSize: '13px', color: '#64748B', lineHeight: '1.4' }}>
+            Evidence-Driven Brand Governance Workstation
+          </p>
+        </div>
+
+        {/* Demo Credentials Pill */}
+        <div
+          onClick={handleFillDemoCredentials}
+          style={{
+            cursor: 'pointer',
+            backgroundColor: '#F8FAFC',
+            border: '1px solid #E2E8F0',
+            borderRadius: '10px',
+            padding: '10px 14px',
+            marginBottom: '22px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '8px',
+            transition: 'all 0.15s ease'
+          }}
+          title="Click to auto-fill demo credentials"
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div
+              style={{
+                width: '20px',
+                height: '20px',
+                borderRadius: '50%',
+                backgroundColor: '#ECFDF5',
+                color: '#16A34A',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0
+              }}
+            >
+              <CheckCircle2 size={13} />
+            </div>
+            <div style={{ fontSize: '12px', color: '#334155' }}>
+              Demo Login: <strong>admin</strong> / <strong>admin</strong>
+            </div>
+          </div>
+          <span
+            style={{
+              fontSize: '11px',
+              color: '#00473E',
+              fontWeight: 600,
+              textDecoration: 'underline'
+            }}
+          >
+            Auto-fill
+          </span>
+        </div>
+
+        {/* Error Alert */}
+        {error && (
+          <div
+            style={{
+              backgroundColor: '#FEF2F2',
+              border: '1px solid #FECACA',
+              borderRadius: '8px',
+              padding: '10px 12px',
+              marginBottom: '18px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              color: '#991B1B',
+              fontSize: '12.5px'
+            }}
+          >
+            <AlertCircle size={16} color="#DC2626" style={{ flexShrink: 0 }} />
+            <span>{error}</span>
+          </div>
+        )}
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div>
+            <label
+              htmlFor="username-input"
+              style={{
+                display: 'block',
+                fontSize: '12.5px',
+                fontWeight: 600,
+                color: '#334155',
+                marginBottom: '6px'
+              }}
+            >
+              Username
+            </label>
+            <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+              <div
+                style={{
+                  position: 'absolute',
+                  left: '12px',
+                  color: '#94A3B8',
+                  pointerEvents: 'none',
+                  display: 'flex',
+                  alignItems: 'center'
+                }}
+              >
+                <User size={16} />
+              </div>
+              <input
+                id="username-input"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="admin"
+                autoComplete="username"
+                required
+                style={{
+                  width: '100%',
+                  padding: '10px 14px 10px 38px',
+                  borderRadius: '8px',
+                  border: '1px solid #CBD5E1',
+                  fontSize: '14px',
+                  color: '#0F172A',
+                  backgroundColor: '#FFFFFF',
+                  outline: 'none',
+                  boxSizing: 'border-box',
+                  transition: 'border-color 0.15s, box-shadow 0.15s'
+                }}
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = '#00473E';
+                  e.currentTarget.style.boxShadow = '0 0 0 3px rgba(0,71,62,0.12)';
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = '#CBD5E1';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              />
+            </div>
+          </div>
+
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+              <label
+                htmlFor="password-input"
+                style={{
+                  fontSize: '12.5px',
+                  fontWeight: 600,
+                  color: '#334155'
+                }}
+              >
+                Password
+              </label>
+              <span style={{ fontSize: '11px', color: '#64748B' }}>
+                Default: <strong>admin</strong>
+              </span>
+            </div>
+            <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+              <div
+                style={{
+                  position: 'absolute',
+                  left: '12px',
+                  color: '#94A3B8',
+                  pointerEvents: 'none',
+                  display: 'flex',
+                  alignItems: 'center'
+                }}
+              >
+                <Lock size={16} />
+              </div>
+              <input
+                id="password-input"
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="admin"
+                autoComplete="current-password"
+                required
+                style={{
+                  width: '100%',
+                  padding: '10px 40px 10px 38px',
+                  borderRadius: '8px',
+                  border: '1px solid #CBD5E1',
+                  fontSize: '14px',
+                  color: '#0F172A',
+                  backgroundColor: '#FFFFFF',
+                  outline: 'none',
+                  boxSizing: 'border-box',
+                  transition: 'border-color 0.15s, box-shadow 0.15s'
+                }}
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = '#00473E';
+                  e.currentTarget.style.boxShadow = '0 0 0 3px rgba(0,71,62,0.12)';
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = '#CBD5E1';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: 'absolute',
+                  right: '10px',
+                  background: 'none',
+                  border: 'none',
+                  color: '#64748B',
+                  cursor: 'pointer',
+                  padding: '4px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  borderRadius: '4px'
+                }}
+                title={showPassword ? 'Hide password' : 'Show password'}
+              >
+                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+              </button>
+            </div>
+          </div>
+
+          {/* Sign In Primary Button */}
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            style={{
+              marginTop: '6px',
+              width: '100%',
+              padding: '11px 18px',
+              backgroundColor: '#00473E',
+              color: '#FFFFFF',
+              border: 'none',
+              borderRadius: '8px',
+              fontSize: '14px',
+              fontWeight: 700,
+              cursor: isSubmitting ? 'not-allowed' : 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              boxShadow: '0 4px 12px rgba(0,71,62,0.25)',
+              transition: 'background-color 0.15s, transform 0.1s',
+              opacity: isSubmitting ? 0.8 : 1
+            }}
+            onMouseEnter={(e) => {
+              if (!isSubmitting) e.currentTarget.style.backgroundColor = '#023831';
+            }}
+            onMouseLeave={(e) => {
+              if (!isSubmitting) e.currentTarget.style.backgroundColor = '#00473E';
+            }}
+          >
+            <span>{isSubmitting ? 'Authenticating...' : 'Sign In'}</span>
+            {!isSubmitting && <ArrowRight size={16} />}
+          </button>
+        </form>
+
+        {/* Divider */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            margin: '20px 0 16px',
+            color: '#CBD5E1'
+          }}
+        >
+          <div style={{ flex: 1, height: '1px', backgroundColor: '#E2E8F0' }} />
+          <span style={{ padding: '0 10px', fontSize: '11px', color: '#94A3B8', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            or
+          </span>
+          <div style={{ flex: 1, height: '1px', backgroundColor: '#E2E8F0' }} />
+        </div>
+
+        {/* 1-Click Quick Demo Access Button */}
+        <button
+          type="button"
+          onClick={handleQuickDemoLogin}
+          disabled={isSubmitting}
+          style={{
+            width: '100%',
+            padding: '10px 16px',
+            backgroundColor: '#F0FDF4',
+            color: '#166534',
+            border: '1px solid #BBF7D0',
+            borderRadius: '8px',
+            fontSize: '13px',
+            fontWeight: 700,
+            cursor: isSubmitting ? 'not-allowed' : 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+            transition: 'all 0.15s ease'
+          }}
+          onMouseEnter={(e) => {
+            if (!isSubmitting) e.currentTarget.style.backgroundColor = '#DCFCE7';
+          }}
+          onMouseLeave={(e) => {
+            if (!isSubmitting) e.currentTarget.style.backgroundColor = '#F0FDF4';
+          }}
+        >
+          <Sparkles size={15} color="#16A34A" />
+          <span>1-Click Quick Demo Login (Admin)</span>
+        </button>
+
+        {/* Compliance Footer note */}
+        <div
+          style={{
+            marginTop: '24px',
+            paddingTop: '16px',
+            borderTop: '1px solid #F1F5F9',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '6px',
+            fontSize: '11.5px',
+            color: '#94A3B8'
+          }}
+        >
+          <Cpu size={13} color="#16A34A" />
+          <span>Aurelia Skincare Governance Workstation v3.3</span>
+        </div>
+      </div>
+    </div>
+  );
+};

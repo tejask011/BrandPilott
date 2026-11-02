@@ -8,7 +8,8 @@ import {
   Cpu,
   RotateCcw,
   Menu,
-  X
+  X,
+  LogOut
 } from 'lucide-react';
 import { BrandKnowledgeBase } from '../types/brand';
 import { checkBackendAiStatus } from '../services/groqService';
@@ -21,6 +22,8 @@ interface NavbarProps {
   brandKB: BrandKnowledgeBase;
   onResetDefaults: () => void;
   onOpenSettings?: () => void;
+  currentUser?: string;
+  onLogout?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -28,6 +31,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onTabChange,
   brandKB,
   onResetDefaults,
+  currentUser,
+  onLogout,
 }) => {
   const [aiStatus, setAiStatus] = useState<{ available: boolean; configured: boolean }>({
     available: false,
@@ -134,6 +139,53 @@ export const Navbar: React.FC<NavbarProps> = ({
             <RotateCcw size={14} />
             <span>Reset</span>
           </button>
+
+          {currentUser && (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                padding: '4px 8px',
+                backgroundColor: '#F8FAFC',
+                border: '1px solid #E2E8F0',
+                borderRadius: '8px',
+                fontSize: '11.5px',
+                color: '#334155'
+              }}
+              title={`Logged in as ${currentUser}`}
+            >
+              <div
+                style={{
+                  width: '18px',
+                  height: '18px',
+                  borderRadius: '50%',
+                  backgroundColor: '#00473E',
+                  color: '#FFFFFF',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '10px',
+                  fontWeight: 800
+                }}
+              >
+                {currentUser.charAt(0).toUpperCase()}
+              </div>
+              <span style={{ fontWeight: 600 }}>{currentUser}</span>
+            </div>
+          )}
+
+          {onLogout && (
+            <button
+              className="btn btn-secondary btn-sm"
+              onClick={onLogout}
+              title="Log out of demo workstation"
+              style={{ padding: '5px 9px', display: 'flex', alignItems: 'center', gap: '4px' }}
+            >
+              <LogOut size={13} />
+              <span>Logout</span>
+            </button>
+          )}
         </div>
 
         {/* Mobile Hamburger / Close Button */}
@@ -170,6 +222,57 @@ export const Navbar: React.FC<NavbarProps> = ({
             <span>{aiStatus.configured ? 'Groq AI Active' : aiStatus.available ? 'Groq Key Missing' : 'AI Offline'}</span>
           </div>
         </div>
+
+        {currentUser && (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              padding: '8px 12px',
+              backgroundColor: '#F8FAFC',
+              borderRadius: '8px',
+              border: '1px solid #E2E8F0'
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div
+                style={{
+                  width: '24px',
+                  height: '24px',
+                  borderRadius: '50%',
+                  backgroundColor: '#00473E',
+                  color: '#FFFFFF',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '11px',
+                  fontWeight: 800
+                }}
+              >
+                {currentUser.charAt(0).toUpperCase()}
+              </div>
+              <div style={{ fontSize: '12px' }}>
+                <span style={{ color: '#64748B' }}>Signed in: </span>
+                <strong style={{ color: '#0F172A' }}>{currentUser}</strong>
+              </div>
+            </div>
+
+            {onLogout && (
+              <button
+                className="btn btn-secondary btn-sm"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onLogout();
+                }}
+                style={{ padding: '4px 8px', fontSize: '11.5px', display: 'flex', alignItems: 'center', gap: '4px' }}
+              >
+                <LogOut size={12} />
+                <span>Logout</span>
+              </button>
+            )}
+          </div>
+        )}
 
         <button
           className="btn btn-secondary btn-sm"
